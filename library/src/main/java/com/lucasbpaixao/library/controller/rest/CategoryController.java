@@ -17,7 +17,7 @@ public class CategoryController {
     private CategoryRepository categoryRepository;
 
     @PostMapping("create-category")
-    public ResponseEntity<Category> creteCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
         categoryRepository.saveAndFlush(category);
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
@@ -26,5 +26,17 @@ public class CategoryController {
     public ResponseEntity<List<Category>> getAllCategories() {
         categoryRepository.findAll();
         return new ResponseEntity<>(categoryRepository.findAll(), HttpStatus.OK);
+    }
+
+    @PutMapping("update-category")
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
+        categoryRepository.saveAndFlush(category);
+        return new ResponseEntity<>(category, HttpStatus.OK);
+    }
+
+    @DeleteMapping("delete-category")
+    public ResponseEntity<Category> deleteCategory(@RequestBody Category category) {
+        categoryRepository.delete(category);
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 }
