@@ -1,13 +1,18 @@
 package com.lucasbpaixao.library.model;
 
+import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
 public class Inventory {
     public Inventory() {}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @OneToOne(cascade = CascadeType.ALL)
     private Book book;
     private LocalDateTime updatedAt;
     private int availableQuantity;

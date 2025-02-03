@@ -1,15 +1,18 @@
 package com.lucasbpaixao.library.model;
 
 import com.lucasbpaixao.library.enums.RentStatus;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Entity
 public class Rent {
     public Rent() {
     }
 
-    public Rent(Book book, Costumer costumer) {
+    public Rent(List<Book> book, Costumer costumer) {
         this.book = book;
         this.costumer = costumer;
         this.rentDate = LocalDateTime.now();
@@ -18,8 +21,12 @@ public class Rent {
         this.overdueFine = new BigDecimal("0.0");
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Book book;
+    @ManyToMany(cascade = CascadeType.DETACH)
+    private List<Book> book;
+    @ManyToOne(cascade = CascadeType.DETACH)
     private Costumer costumer;
     private LocalDateTime rentDate;
     private LocalDateTime returnDate;
@@ -34,11 +41,11 @@ public class Rent {
         this.id = id;
     }
 
-    public Book getBook() {
+    public List<Book> getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(List<Book> book) {
         this.book = book;
     }
 

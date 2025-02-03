@@ -1,12 +1,18 @@
 package com.lucasbpaixao.library.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
+@Entity
 public class Costumer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private LocalDateTime createdAt;
     private LocalDateTime birthDate;
+    @OneToOne(cascade = CascadeType.ALL)
     private CostumerAddress costumerAddress;
     private String email;
     private String phone;
