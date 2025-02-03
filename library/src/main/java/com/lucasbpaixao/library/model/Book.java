@@ -1,13 +1,20 @@
 package com.lucasbpaixao.library.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    @OneToOne
     private Author author;
+    @OneToOne
     private Category category;
     private LocalDateTime releaseDate;
     private String description;
