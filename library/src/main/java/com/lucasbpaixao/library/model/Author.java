@@ -5,32 +5,31 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     private String gender;
     private String literaryEra;
     public Author() {}
 
-    public Author(String name, LocalDateTime birthDate, String gender, String literaryEra) {
+    public Author(String name, LocalDate birthDate, String gender, String literaryEra) {
         this.name = name;
         this.birthDate = birthDate;
         this.gender = gender;
         this.literaryEra = literaryEra;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,11 +41,11 @@ public class Author {
         this.name = name;
     }
 
-    public LocalDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDateTime birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -64,5 +63,20 @@ public class Author {
 
     public void setLiteraryEra(String literaryEra) {
         this.literaryEra = literaryEra;
+    }
+
+    public void update(Author author) throws NullPointerException {
+        if(!author.getName().equals(this.name)) {
+            this.name = author.getName();
+        }
+        if(!author.getBirthDate().equals(this.birthDate)) {
+            this.birthDate = author.getBirthDate();
+        }
+        if(!author.getGender().equals(this.gender)) {
+            this.gender = author.getGender();
+        }
+        if(!author.getLiteraryEra().equals(this.literaryEra)) {
+            this.literaryEra = author.getLiteraryEra();
+        }
     }
 }
