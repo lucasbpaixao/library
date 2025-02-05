@@ -8,10 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("category")
-public class CategoryController {
+public class CategoryRestController {
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -24,8 +25,13 @@ public class CategoryController {
 
     @GetMapping("get-categories")
     public ResponseEntity<List<Category>> getAllCategories() {
-        categoryRepository.findAll();
         return new ResponseEntity<>(categoryRepository.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("get-category/{id}")
+    public ResponseEntity<Category> getCategoryById(@PathVariable long id) {
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+        return categoryOptional.map(category -> new ResponseEntity<>(category, HttpStatus.OK)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("update-category")

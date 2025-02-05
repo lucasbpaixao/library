@@ -2,6 +2,7 @@ package com.lucasbpaixao.library.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,7 +12,7 @@ public class Costumer {
     private int id;
     private String name;
     private LocalDateTime createdAt;
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
     @OneToOne(cascade = CascadeType.ALL)
     private CostumerAddress costumerAddress;
     private String email;
@@ -23,7 +24,7 @@ public class Costumer {
     public Costumer() {
     }
 
-    public Costumer(String name, LocalDateTime birthDate, CostumerAddress costumerAddress, String email, String phone, String backupPhone, String cpf, String gender) {
+    public Costumer(String name, LocalDate birthDate, CostumerAddress costumerAddress, String email, String phone, String backupPhone, String cpf, String gender) {
         this.name = name;
         this.createdAt = LocalDateTime.now();
         this.birthDate = birthDate;
@@ -59,11 +60,11 @@ public class Costumer {
         this.createdAt = createdAt;
     }
 
-    public LocalDateTime getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDateTime birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
