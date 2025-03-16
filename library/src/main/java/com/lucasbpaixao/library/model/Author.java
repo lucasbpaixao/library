@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 @Entity
 public class Author {
@@ -65,18 +66,29 @@ public class Author {
         this.literaryEra = literaryEra;
     }
 
-    public void update(Author author) throws NullPointerException {
-        if(!author.getName().equals(this.name)) {
-            this.name = author.getName();
+    public void update(Author newAuthor) throws NullPointerException {
+        if(newAuthor.getName() != null){
+            if(!newAuthor.getName().equals(this.name)) {
+                this.name = newAuthor.getName();
+            }
         }
-        if(!author.getBirthDate().equals(this.birthDate)) {
-            this.birthDate = author.getBirthDate();
+
+        if(newAuthor.getBirthDate() != null){
+            if(!newAuthor.getBirthDate().equals(this.birthDate)) {
+                this.birthDate = newAuthor.getBirthDate();
+            }
         }
-        if(!author.getGender().equals(this.gender)) {
-            this.gender = author.getGender();
+
+        if(newAuthor.getGender() != null){
+            if(!newAuthor.getGender().equals(this.gender)) {
+                this.gender = newAuthor.getGender();
+            }
         }
-        if(!author.getLiteraryEra().equals(this.literaryEra)) {
-            this.literaryEra = author.getLiteraryEra();
+
+        if(newAuthor.getLiteraryEra() != null){
+            if(!newAuthor.getLiteraryEra().equals(this.literaryEra)) {
+                this.literaryEra = newAuthor.getLiteraryEra();
+            }
         }
     }
 }

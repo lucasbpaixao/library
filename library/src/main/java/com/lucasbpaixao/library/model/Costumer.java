@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Costumer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private LocalDateTime createdAt;
     private LocalDate birthDate;
@@ -36,11 +36,11 @@ public class Costumer {
         this.gender = gender;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -114,5 +114,54 @@ public class Costumer {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public void update(Costumer newCostumer){
+        if(newCostumer.getName() != null){
+            if(!newCostumer.getName().equals(this.name)){
+                this.name = newCostumer.getName();
+            }
+        }
+
+        if(newCostumer.getBirthDate() != null){
+            if(!newCostumer.getBirthDate().equals(this.birthDate)){
+                this.birthDate = newCostumer.getBirthDate();
+            }
+        }
+
+        if(newCostumer.getCostumerAddress() != null){
+            this.costumerAddress.update(newCostumer.getCostumerAddress());
+        }
+
+
+        if(newCostumer.getEmail() != null){
+            if(!newCostumer.getEmail().equals(this.email)){
+                this.email = newCostumer.getEmail();
+            }
+        }
+
+        if(newCostumer.getPhone() != null){
+            if(!newCostumer.getPhone().equals(this.phone)){
+                this.phone = newCostumer.getPhone();
+            }
+        }
+
+        if(newCostumer.getBackupPhone() != null){
+            if(!newCostumer.getBackupPhone().equals(this.backupPhone)){
+                this.backupPhone = newCostumer.getBackupPhone();
+            }
+        }
+
+        if(newCostumer.getCpf() != null){
+            if(!newCostumer.getCpf().equals(this.cpf)){
+                this.cpf = newCostumer.getCpf();
+            }
+        }
+
+        if(newCostumer.getGender() != null){
+            if(!newCostumer.getGender().equals(this.gender)){
+                this.gender = newCostumer.getGender();
+            }
+        }
     }
 }
