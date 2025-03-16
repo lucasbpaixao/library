@@ -2,9 +2,7 @@ package com.lucasbpaixao.library.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 public class Book {
@@ -16,7 +14,7 @@ public class Book {
     private Author author;
     @OneToOne
     private Category category;
-    private LocalDateTime releaseDate;
+    private LocalDate releaseDate;
     private String description;
     private int pages;
     private int chapters;
@@ -24,7 +22,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, Author author, Category category, LocalDateTime releaseDate, String description, int pages, int chapters) {
+    public Book(String title, Author author, Category category, LocalDate releaseDate, String description, int pages, int chapters) {
         this.title = title;
         this.author = author;
         this.category = category;
@@ -66,11 +64,11 @@ public class Book {
         this.category = category;
     }
 
-    public LocalDateTime getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDateTime releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

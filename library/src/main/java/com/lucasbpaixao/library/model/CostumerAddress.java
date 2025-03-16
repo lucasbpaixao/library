@@ -64,4 +64,31 @@ public class CostumerAddress {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public void update(CostumerAddress newAddress) {
+        if(newAddress.getCep() != null) {
+            if(!newAddress.getCep().equals(this.cep)) {
+                this.cep = newAddress.getCep();
+            }
+        }
+
+        if(newAddress.getStreet() != null) {
+            if(!newAddress.getStreet().equals(this.street)) {
+                this.street = newAddress.getStreet();
+            }
+        }
+
+        if(newAddress.getNumber() != null) {
+            if(!newAddress.getNumber().equals(this.number)) {
+                this.number = newAddress.getNumber();
+            }
+        }
+
+
+        if(newAddress.getCity() != null) {
+            if(!newAddress.getCity().equals(this.city)) {
+                this.city = newAddress.getCity();
+            }
+        }
+    }
 }
